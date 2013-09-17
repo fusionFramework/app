@@ -1,0 +1,105 @@
+{
+	"name"       :"fusionFramework/app",
+	"type"       :"project",
+	"description":"fusionFramework bootstrap project",
+	"homepage"   :"https://github.com/fusionFramework",
+	"license"    :"MIT",
+	"authors"    :[
+		{
+			"name"    :"Maxim Kerstens",
+			"email"   :"maxim.kerstens@gmail.com",
+			"role"    :"Project maintainer"
+		}
+	],
+	"repositories": [
+		{
+			"type": "package",
+			"package": {
+				"name": "kohana-minion/tasks-migrations",
+				"type": "kohana-module",
+				"version": "3.3.0",
+				"source": {
+					"url": "https://github.com/kohana-minion/tasks-migrations.git",
+					"type": "git",
+					"reference": "3.3/develop"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "zombor/kostache",
+				"type": "kohana-module",
+				"version": "4.0.2",
+				"source": {
+					"url": "https://github.com/zombor/KOstache.git",
+					"type": "git",
+					"reference": "master"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "morgan/kohana-paginate",
+				"version": "0.3.0",
+				"type" : "kohana-module",
+				"source": {
+					"url": "https://github.com/morgan/kohana-paginate",
+					"type": "git",
+					"reference": "3.3/develop"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "morgan/kohana-datatables",
+				"version": "0.2.0",
+				"type" : "kohana-module",
+				"source": {
+					"url": "https://github.com/morgan/kohana-datatables",
+					"type": "git",
+					"reference": "3.3/develop"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "happydemon/req",
+				"version": "0.1.0",
+				"type" : "kohana-module",
+				"source": {
+					"url": "https://github.com/happyDemon/req",
+					"type": "git",
+					"reference": "master"
+				}
+			}
+		}
+	],
+	"require": {
+		"kohana/database": "3.3.*",
+		"kohana/orm": "3.3.*",
+		"kohana/minion": "3.3.*",
+		"kohana/cache": "3.3.*",
+		"kohana/userguide": "3.3.*",
+		"kohana/core": "3.3.*",
+		"cartalyst/sentry": "2.0.*",
+		"ircmaxell/password-compat": "1.0.*",
+		"kohana-minion/tasks-migrations": "*",
+		"happydemon/arr": "1.*",
+		"happydemon/elements": "1.*",
+		"happydemon/txt": "1.*",
+		"happydemon/quill": "*",
+		"happydemon/req": "*",
+		"vheissu/kohana-plugin-system": "1.*",
+		"zombor/kostache": "4.0.2",
+		"swiftmailer/swiftmailer": "v5.0.2",
+		"happydemon/data-table": "0.4"
+	},
+	"config": {
+		"vendor-dir": "vendor"
+	},
+	"minimum-stability": "dev"
+}
