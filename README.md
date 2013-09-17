@@ -1,0 +1,4 @@
+app
+===
+
+Default fusionFramework installation
