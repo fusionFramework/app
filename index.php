@@ -20,13 +20,20 @@ $modules = 'modules';
  * directory must contain the classes/kohana.php file.
  *
  * @link http://kohanaframework.org/guide/about.install#system
+ *
+ * !! Since the project is installed through composer, the system folder is located in APPPATH/vendor/kohana/core
  */
-$system = 'vendor/kohana/core';
+$system = $application.'/vendor/kohana/core';
 
 /**
  * The directory in which fusionFramework specific modules are stored.
  */
 $fusion = 'fusion';
+
+/**
+ * The directory in which all web-accessible media is stored (assets, images,.. no scripts).
+ */
+$htdocs = 'htdocs';
 
 /**
  * The default extension of resource files. If you change this, all resources
@@ -77,11 +84,16 @@ if ( ! is_dir($system) AND is_dir(DOCROOT.$system))
 if ( ! is_dir($fusion) AND is_dir(DOCROOT.$fusion))
 	$fusion = DOCROOT.$fusion;
 
+// Make the htdocs relative to the docroot, for symlink'd index.php
+if ( ! is_dir($htdocs) AND is_dir(DOCROOT.$htdocs))
+	$htdocs = DOCROOT.$htdocs;
+
 // Define the absolute paths for configured directories
 define('APPPATH', realpath($application).DIRECTORY_SEPARATOR);
 define('MODPATH', realpath($modules).DIRECTORY_SEPARATOR);
 define('SYSPATH', realpath($system).DIRECTORY_SEPARATOR);
 define('FUSIONPATH', realpath($fusion).DIRECTORY_SEPARATOR);
+define('WEBPATH', realpath($htdocs).DIRECTORY_SEPARATOR);
 
 // Clean up the configuration vars
 unset($application, $modules, $system, $fusion);

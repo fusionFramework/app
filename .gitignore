@@ -1,0 +1,17 @@
+application/cache/*
+application/vendor/*
+
+application/logs/*
+application/config/*
+
+
+modules/*
+
+fusion/*
+
+
+composer.lock
+
+
+.gitmodules
+.idea

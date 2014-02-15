@@ -13,72 +13,12 @@
 	],
 	"repositories": [
 		{
-			"type": "package",
-			"package": {
-				"name": "kohana-minion/tasks-migrations",
-				"type": "kohana-module",
-				"version": "3.3.0",
-				"source": {
-					"url": "https://github.com/kohana-minion/tasks-migrations.git",
-					"type": "git",
-					"reference": "3.3/develop"
-				}
-			}
-		},
-		{
-			"type": "package",
-			"package": {
-				"name": "zombor/kostache",
-				"type": "kohana-module",
-				"version": "4.0.2",
-				"source": {
-					"url": "https://github.com/zombor/KOstache.git",
-					"type": "git",
-					"reference": "master"
-				}
-			}
-		},
-		{
-			"type": "package",
-			"package": {
-				"name": "morgan/kohana-paginate",
-				"version": "0.3.0",
-				"type" : "kohana-module",
-				"source": {
-					"url": "https://github.com/morgan/kohana-paginate",
-					"type": "git",
-					"reference": "3.3/develop"
-				}
-			}
-		},
-		{
-			"type": "package",
-			"package": {
-				"name": "morgan/kohana-datatables",
-				"version": "0.2.0",
-				"type" : "kohana-module",
-				"source": {
-					"url": "https://github.com/morgan/kohana-datatables",
-					"type": "git",
-					"reference": "3.3/develop"
-				}
-			}
-		},
-		{
-			"type": "package",
-			"package": {
-				"name": "happydemon/req",
-				"version": "0.1.0",
-				"type" : "kohana-module",
-				"source": {
-					"url": "https://github.com/happyDemon/req",
-					"type": "git",
-					"reference": "master"
-				}
-			}
+			"type": "composer",
+			"url": "http://fusion.happydemon.org/"
 		}
 	],
 	"require": {
+		"php": ">=5.4.0",
 		"kohana/database": "3.3.*",
 		"kohana/orm": "3.3.*",
 		"kohana/minion": "3.3.*",
@@ -87,19 +27,24 @@
 		"kohana/core": "3.3.*",
 		"cartalyst/sentry": "2.0.*",
 		"ircmaxell/password-compat": "1.0.*",
-		"kohana-minion/tasks-migrations": "*",
+		"happydemon/quill": "*",
 		"happydemon/arr": "1.*",
 		"happydemon/elements": "1.*",
 		"happydemon/txt": "1.*",
-		"happydemon/quill": "*",
-		"happydemon/req": "*",
+		"happydemon/req": "~0.9",
 		"vheissu/kohana-plugin-system": "1.*",
 		"zombor/kostache": "4.0.2",
 		"swiftmailer/swiftmailer": "v5.0.2",
-		"happydemon/data-table": "0.4"
+		"kohana-minion/tasks-migrations": "*",
+		"happydemon/data-table": "~0.4",
+		"bmidget/kohana-formo": "3.1.*",
+		"samwilson/kohana_datalog": "~0.2.1",
+		"guzzle/guzzle": "v3.7.4",
+		"frenkynet/flysystem": "0.2.*",
+		"happydemon/purifier": "1.2.*"
 	},
 	"config": {
-		"vendor-dir": "vendor"
+		"vendor-dir": "application/vendor"
 	},
 	"minimum-stability": "dev"
 }

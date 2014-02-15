@@ -5,10 +5,10 @@
 // Load the core Kohana class
 require SYSPATH.'classes/Kohana/Core'.EXT;
 
-if (is_file(APPPATH.'classes/Kohana'.EXT))
+if (is_file(FUSIONPATH.'core'.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'Kohana'.EXT))
 {
-	// Application extends the core
-	require APPPATH.'classes/Kohana'.EXT;
+	// Load FusionFramework core extension
+	require FUSIONPATH.'core'.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'Kohana'.EXT;
 }
 else
 {
@@ -41,9 +41,9 @@ setlocale(LC_ALL, 'en_US.utf-8');
 spl_autoload_register(array('Kohana', 'auto_load'));
 
 /**
- * Composer auto-loader
+ * Enable composer support
  */
-require_once DOCROOT.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
+include_once APPPATH . 'vendor/autoload.php';
 
 /**
  * Optionally, you can enable a compatibility auto-loader for use with
@@ -69,6 +69,11 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
 mb_substitute_character('none');
 
 // -- Configuration and initialization -----------------------------------------
+
+/**
+ * Set the default language
+ */
+I18n::lang('en-us');
 
 if (isset($_SERVER['SERVER_PROTOCOL']))
 {
@@ -120,35 +125,6 @@ Kohana::$log->attach(new Log_File(APPPATH.'logs'));
 Kohana::$config->attach(new Config_File);
 
 /**
- * Enable modules. Modules are referenced by a relative or absolute path.
- */
-Kohana::modules(array(
-	// fusionFramework modules
-	'item'                  => FUSIONPATH.'item',
-	'social'                => FUSIONPATH.'social',
-	'admin'                 => FUSIONPATH.'admin',
-	'user'                  => FUSIONPATH.'user',
-	'core'                  => FUSIONPATH.'core',
-	// Kohana modules
-	'data-table'            => MODPATH.'data-table', // dataTable preparer
-	'kohana-datatables'     => MODPATH.'kohana-datatables', //dataTable request helper
-	'kohana-paginate'       => MODPATH.'kohana-paginate', // Pagination helper
-	'arr'                   => MODPATH.'arr',        // Array helper
-	'kostache'              => MODPATH.'kostache',   // Template engine
-	'elements'              => MODPATH.'elements',   // Navigation element manager
-	'kohana-plugin-system'  => MODPATH.'kohana-plugin-system', // Plugin/event system
-	'quill'                 => MODPATH.'quill',      // Portable discussion helper
-	'req'                   => MODPATH.'req',        // Handles flash messages (even over ajax)
-	'tasks-migrations'      => MODPATH.'tasks-migrations', //Migration task runner
-	'txt'                   => MODPATH.'txt',        // Text helpers for Sentry
-	'cache'                 => MODPATH.'cache',      // Caching with multiple backends
-	'database'              => MODPATH.'database',   // Database access
-	'minion'                => MODPATH.'minion',     // CLI Tasks
-	'orm'                   => MODPATH.'orm',        // Object Relationship Mapping
-	'userguide'             => MODPATH.'userguide',  // User guide and API documentation
-	));
-
-/**
  * Cookie
  */
 Cookie::$salt = 'salt';
@@ -159,9 +135,41 @@ Cookie::$salt = 'salt';
 Session::$default = 'database';
 
 /**
- * Set the default language
+ * Enable modules. Modules are referenced by a relative or absolute path.
  */
-I18n::lang('en-us');
+Kohana::modules(array (
+	// fusionFramework modules
+	'economy'               => FUSIONPATH.'economy',
+	'social'                => FUSIONPATH.'social',
+	'pets'                  => FUSIONPATH.'pets',
+	'admin'                 => FUSIONPATH.'admin',
+	'user'                  => FUSIONPATH.'user',
+	'core'                  => FUSIONPATH.'core',
+	// Kohana modules
+	'purifier'              => MODPATH.'purifier',   // Protection against XSS attacks
+	'data-table'            => MODPATH.'data-table', // dataTable preparer
+	'kohana-datatables'     => MODPATH.'kohana-datatables', //dataTable request helper
+	'kohana-paginate'       => MODPATH.'kohana-paginate', // Pagination helper
+	'arr'                   => MODPATH.'arr',        // Array helper
+	'kostache'              => MODPATH.'kostache',   // Template engine
+	'elements'              => MODPATH.'elements',   // Navigation element manager
+	'kohana-plugin-system'  => MODPATH.'kohana-plugin-system', // Plugin/event system
+	'quill'                 => MODPATH.'quill',      // Portable discussion helper
+	'req'                   => MODPATH.'req',        // Handles flash messages (even over ajax)
+	'tasks-migrations'      => MODPATH.'tasks-migrations', //Migration task runner
+	'datalog'               => MODPATH.'kohana_datalog', // ORM record revision tracker
+	'txt'                   => MODPATH.'txt',        // Text helpers for Sentry
+	'formo'                 => MODPATH.'kohana-formo', //Form generation
+	'cache'                 => MODPATH.'cache',      // Caching with multiple backends
+	'database'              => MODPATH.'database',   // Database access
+	'minion'                => MODPATH.'minion',     // CLI Tasks
+	'orm'                   => MODPATH.'orm',        // Object Relationship Mapping
+	'userguide'             => MODPATH.'userguide',  // User guide and API documentation
+	)
+);
+
+// Initialise the Fusion helper
+Fusion::init();
 
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
@@ -171,4 +179,5 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller' => 'welcome',
 		'action'     => 'index',
-	));
+	)
+);
